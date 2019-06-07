@@ -58,27 +58,27 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
    ```
    <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/junit-4.12-sources.jar"/>
    ```
+   
    - 创建和src/目录下想用的包路径，并将要测试的文件改名为XxxTest.java
 
    ```java
-    package solutions.fundamentals;
+   package solutions.fundamentals;
 
-    import static org.junit.Assert.*;
-    import org.junit.Test;
+   import static org.junit.Assert.*;
+   import org.junit.Test;
 
-    public class ChapterOneSolutionTest
-    {
-        @Test
-        public void testParentheses()
-        {
-            String pattern = "[[]](){}[({})]";
-            assertEquals(true, ChapterOneSolution.parentheses(pattern));
-        }
-    }
-  ```
+   public class ChapterOneSolutionTest
+   {
+       @Test
+       public void testParentheses()
+       {
+           String pattern = "[[]](){}[({})]";
+           assertEquals(true, ChapterOneSolution.parentheses(pattern));
+       }
+   }
+   ```
 
 3. 最后写点废话  
-
 ####  algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？  
 
 列个todo：
