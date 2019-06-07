@@ -24,7 +24,7 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
 ```
 ### 2. 使用vscode进行开发
 
-#### 确实使用vscode写java是一种`浪费时间`把，使用过程中要不断了解许多东西，可能没有使用像eclipse、IDEA那样智能，但是做程序员不就是一路折腾吗。
+#### 确实使用vscode写java是一种`浪费时间`把，使用过程中要不断了解许多东西，可能没有像eclipse、IDEA那样智能，但是做`Code Monkey`不就是一路折腾吗 `手动狗头`。
 - 配置`.classpath`文件
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -80,9 +80,10 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
 
     2. 下载[JUnit4](https://github.com/junit-team/junit4)
     PS.现在已经更新到JUnit5了
-    和algs4.jar一样两种办法,这里用第一种
+    和algs4.jar一样两种办法,这里用第一种,总共两个jar包
     ```
     <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/junit-4.12-sources.jar"/>
+    <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/hamcrest-core-1.3.jar"/>
     ```
 
     3. 创建和src/目录下想用的包路径，并将要测试的文件改名为XxxTest.java
@@ -105,8 +106,7 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
     ```
 
 ### 3. 最后写点废话
-
-#### > algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
+> algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
 
 列个todo：
  - 一键修改包下面的不正确的包名
