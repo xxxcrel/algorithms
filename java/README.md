@@ -46,10 +46,42 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
     ```
 2. 有时候我们想要进行单元测试(比如我写的每一章节的答案，全部放在main里面显得繁琐杂乱)
 
-   新建test目录，修改.classpath
+   - 新建test目录，修改.classpath
    ```
    <classpathentry kind="src" path="test"/>
    ```
    kind定义为src，vscode中的java扩展会自动把你的XxxxTest.java文件生成到和src/目录下相同包名路径下的.class文件到bin/目录中
 
+   - 下载[JUnit4](https://github.com/junit-team/junit4)
+   PS.现在已经更新到JUnit5了
+   和algs4.jar一样两种办法,这里用第一种
+   ```
+   <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/junit-4.12-sources.jar"/>
+   ```
+   - 创建和src/目录下想用的包路径，并将要测试的文件改名为XxxTest.java
 
+   ```java
+    package solutions.fundamentals;
+
+    import static org.junit.Assert.*;
+    import org.junit.Test;
+
+    public class ChapterOneSolutionTest
+    {
+        @Test
+        public void testParentheses()
+        {
+            String pattern = "[[]](){}[({})]";
+            assertEquals(true, ChapterOneSolution.parentheses(pattern));
+        }
+    }
+  ```
+
+3.最后写点废话
+> algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
+列个todo：
+ - 一键修改包下面的不正确的包名
+ - 自动处理依赖
+ - 先这些把
+
+最后：学了那么多乱七八糟的东西，不如静下心来通过某个特定的语言去写写算法，效率极佳，怀念当初用c写一遍一遍实现数据结构的时候
