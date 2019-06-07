@@ -1,4 +1,6 @@
-#### 前期准备
+### 1. 前期准备
+
+#### 开发环境  
 ```
 Ubuntu18.04.2LTS
 VSCode + Java Extension Pack
@@ -20,87 +22,91 @@ eg：/home/xuecheng/RefLib/algs4.jar
 ```
 export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
 ```
-- 使用vscode进行开发
-#### 确实使用vscode写java是一种`考验`把，使用过程中要不断了解许多东西，可能没有使用像eclipse、IDEA那样智能，但是做程序员不就是一路折腾吗。
-1. vscode支持eclipse项目，可以在两个编辑器之间互换，但需了解基本知识
-    配置`.classpath`文件
+### 2. 使用vscode进行开发
+
+#### 确实使用vscode写java是一种`浪费时间`把，使用过程中要不断了解许多东西，可能没有像eclipse、IDEA那样智能，但是做`Code Monkey`不就是一路折腾吗 `手动狗头`。
+- 配置`.classpath`文件
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+  <classpathentry kind="src" path="src"/>
+  <classpathentry kind="output" path="bin"/>
+</classpath>
+```
+> 每当需要为你的项目增加一个库时，就需要在.classpath中增加
+```
+<classpathentry kind="lib" path="Your lib path"/>
+```
+> path有两种选择：(eclipse使用的是第1种，即当你在buildpath中add external archives时)  
+
+  1.直接定位到你本地的lib路径，但是这样就不能迁移项目。
+  ```
+  eg:<classpathentry  kind="lib" path="/home/xuecheng/RefLib/algs4.jar"/>
+  ```
+  2.在根目录创建lib目录，将你的xxx.jar复制到该目录下。
+  ```
+  eg:<classpathentry kind="lib" path="lib/algs4.jar"/>
+  ```
+
+- 配置`.project`文件  
+
+> 只有配置好了这个文件vscode中的java扩展包才能识别这是个java项目
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>java</name>
+  <comment></comment>
+  <projects>
+  </projects>
+  <buildSpec>
+      <buildCommand>
+          <name>org.eclipse.jdt.core.javabuilder</name>
+          <arguments>
+          </arguments>
+      </buildCommand>
+  </buildSpec>
+  <natures>
+      <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
+```
+- 单元测试(可选)
+    1. 新建test目录，修改.classpath
     ```
-    <classpathentry kind="src" path="src"/>
-    <classpathentry kind="output" path="bin"/>
+    <classpathentry kind="src" path="test"/>
+    ```
+    kind定义为src，vscode中的java扩展会自动把你的XxxxTest.java文件生成到和src/目录下相同包名路径下的.class文件到bin/目录中
+
+    2. 下载[JUnit4](https://github.com/junit-team/junit4)
+    PS.现在已经更新到JUnit5了
+    和algs4.jar一样两种办法,这里用第一种,总共两个jar包
+    ```
+    <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/junit-4.12-sources.jar"/>
+    <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/hamcrest-core-1.3.jar"/>
     ```
 
-    每当需要为你的项目增加一个库时，就需要在.classpath中增加
-    ```
-    <classpathentry kind="lib" path="Your lib path"/>
-    ```
-    path有两种选择：(eclipse使用的是第1种，即当你在buildpath中增加一个reference library时)
+    3. 创建和src/目录下想用的包路径，并将要测试的文件改名为XxxTest.java
 
-    1.直接定位到你本地的lib路径，但是这样就不能迁移项目。
-    ```
-    eg:<classpathentry  kind="lib" path="/home/xuecheng/RefLib/algs4.jar"/>
-    ```
+    ```java
+    package solutions.fundamentals;
 
-    2.在根目录创建lib目录，将你的xxx.jar复制到该目录下。
-    ```
-    eg:<classpathentry kind="lib" path="lib/algs4.jar"/>
-    ```
-    配置`.project`文件
-    只有配置好了这个文件vscode中的java扩展包才能识别这是个java项目
-    ```
-    <?xml version="1.0" encoding="UTF-8"?>
-    <projectDescription>
-        <name>java</name>
-        <comment></comment>
-        <projects>
-        </projects>
-        <buildSpec>
-            <buildCommand>
-                <name>org.eclipse.jdt.core.javabuilder</name>
-                <arguments>
-                </arguments>
-            </buildCommand>
-        </buildSpec>
-        <natures>
-            <nature>org.eclipse.jdt.core.javanature</nature>
-        </natures>
-    </projectDescription>
-    ```
-2. 有时候我们想要进行单元测试(比如我写的每一章节的答案，全部放在main里面显得繁琐杂乱)
+    import static org.junit.Assert.*;
+    import org.junit.Test;
 
-   - 新建test目录，修改.classpath
-   ```
-   <classpathentry kind="src" path="test"/>
-   ```
-   kind定义为src，vscode中的java扩展会自动把你的XxxxTest.java文件生成到和src/目录下相同包名路径下的.class文件到bin/目录中
-
-   - 下载[JUnit4](https://github.com/junit-team/junit4)
-   PS.现在已经更新到JUnit5了
-   和algs4.jar一样两种办法,这里用第一种
-   ```
-   <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/junit-4.12-sources.jar"/>
-   ```
-
-   - 创建和src/目录下想用的包路径，并将要测试的文件改名为XxxTest.java
-
-   ```java
-   package solutions.fundamentals;
-
-   import static org.junit.Assert.*;
-   import org.junit.Test;
-
-   public class ChapterOneSolutionTest
-   {
+    public class ChapterOneSolutionTest
+    {
        @Test
        public void testParentheses()
        {
            String pattern = "[[]](){}[({})]";
            assertEquals(true, ChapterOneSolution.parentheses(pattern));
        }
-   }
-   ```
+    }
+    ```
 
-3. 最后写点废话
-####  algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
+### 3. 最后写点废话
+> algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
 
 列个todo：
  - 一键修改包下面的不正确的包名
