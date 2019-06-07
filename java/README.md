@@ -23,7 +23,7 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
 - 使用vscode进行开发
 #### 确实使用vscode写java是一种`考验`把，使用过程中要不断了解许多东西，可能没有使用像eclipse、IDEA那样智能，但是做程序员不就是一路折腾吗。
 1. vscode支持eclipse项目，可以在两个编辑器之间互换，但需了解基本知识
-    配置.classpath文件
+    配置`.classpath`文件
     ```
     <classpathentry kind="src" path="src"/>
     <classpathentry kind="output" path="bin"/>
@@ -44,6 +44,27 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
     ```
     eg:<classpathentry kind="lib" path="lib/algs4.jar"/>
     ```
+    配置`.project`文件
+    只有配置好了这个文件vscode中的java扩展包才能识别这是个java项目
+    ```
+    <?xml version="1.0" encoding="UTF-8"?>
+    <projectDescription>
+        <name>java</name>
+        <comment></comment>
+        <projects>
+        </projects>
+        <buildSpec>
+            <buildCommand>
+                <name>org.eclipse.jdt.core.javabuilder</name>
+                <arguments>
+                </arguments>
+            </buildCommand>
+        </buildSpec>
+        <natures>
+            <nature>org.eclipse.jdt.core.javanature</nature>
+        </natures>
+    </projectDescription>
+    ```
 2. 有时候我们想要进行单元测试(比如我写的每一章节的答案，全部放在main里面显得繁琐杂乱)
 
    - 新建test目录，修改.classpath
@@ -58,7 +79,7 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
    ```
    <classpathentry kind="lib" path="/home/xuecheng/RefLib/JUnit/junit-4.12-sources.jar"/>
    ```
-   
+
    - 创建和src/目录下想用的包路径，并将要测试的文件改名为XxxTest.java
 
    ```java
@@ -78,8 +99,8 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
    }
    ```
 
-3. 最后写点废话  
-####  algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？  
+3. 最后写点废话
+####  algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
 
 列个todo：
  - 一键修改包下面的不正确的包名
