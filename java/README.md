@@ -1,9 +1,10 @@
-### 1. 前期准备
+## 1. 前期准备
 
 #### 开发环境  
 ```
 Ubuntu18.04.2LTS
 VSCode + Java Extension Pack
+JDK-1.8
 ```
 - 配置JAVA_HOME、JRE_HOME、CLASSPATH(~/.bashrc改变当前用户，/etc/profile改变全局)
 ```
@@ -14,7 +15,7 @@ VSCode + Java Extension Pack
 ```
 - 把从'[kevin-wayne/algs4](https://github.com/kevin-wayne/algs4)'下好的源代码分类打包,个人目的是为了清晰， 方便自己修改代码，PS.过程有点繁琐,因为作者是将整个原书代码以及作者自己编写的库打包在一个目录里
 
-- 如果有需要可以将[算法4官方站点](https://algs4.cs.princeton.edu/code/)里的`algs4.jar`下载并放入自己的库里面。
+- 将[算法4官方站点](https://algs4.cs.princeton.edu/code/)里的`algs4.jar`下载并放入自己的库里面。
 ```
 eg：/home/xuecheng/RefLib/algs4.jar
 ```
@@ -22,10 +23,10 @@ eg：/home/xuecheng/RefLib/algs4.jar
 ```
 export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
 ```
-### 2. 使用vscode进行开发
+## 2. 使用vscode进行开发
 
 #### 确实使用vscode写java是一种`浪费时间`把，使用过程中要不断了解许多东西，可能没有像eclipse、IDEA那样智能，但是做`Code Monkey`不就是一路折腾吗 `手动狗头`。
-- 配置`.classpath`文件
+- ###  配置`.classpath`文件
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
@@ -38,18 +39,18 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
 ```
 <classpathentry kind="lib" path="Your lib path"/>
 ```
-> path有两种选择：(eclipse使用的是第1种，即当你在buildpath中add external archives时)  
+> path有两种选择：(与eclipse当你在buildpath中add external archives时相同)  
 
   1.直接定位到你本地的lib路径，但是这样就不能迁移项目。
   ```
   eg:<classpathentry  kind="lib" path="/home/xuecheng/RefLib/algs4.jar"/>
   ```
-  2.在根目录创建lib目录，将你的xxx.jar复制到该目录下。
+  2.在项目根目录创建lib目录，将你的xxx.jar复制到该目录下。
   ```
   eg:<classpathentry kind="lib" path="lib/algs4.jar"/>
   ```
 
-- 配置`.project`文件  
+- ### 配置`.project`文件  
 
 > 只有配置好了这个文件vscode中的java扩展包才能识别这是个java项目
 ```
@@ -71,7 +72,8 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
   </natures>
 </projectDescription>
 ```
-- 单元测试(可选)
+
+## 3. 单元测试(可选)
     1. 新建test目录，修改.classpath
     ```
     <classpathentry kind="src" path="test"/>
@@ -105,7 +107,7 @@ export CLASSPATH=/home/xuecheng/RefLib/algs4.jar:$CLASSPATH
     }
     ```
 
-### 3. 最后写点废话
+## 4. 最后写点废话
 > algs4中的分类和修改包名、处理依赖真的繁琐，于是一边做的时候一边想计算机不就是为了从繁琐至简吗？
 
 列个todo：

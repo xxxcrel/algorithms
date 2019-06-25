@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.Arrays;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-import static net.mindview.util.Print.*;
 
 public class ArrayList<T> implements Iterable<T>, Cloneable
 {
@@ -247,15 +246,15 @@ public class ArrayList<T> implements Iterable<T>, Cloneable
             sList.add("cool");
             sList.add("very");
             for (String s : sList)
-                print(s);
+                System.out.println(s);
             Iterator<String> iter = sList.iterator();
             ListIterator<?> listIter = sList.listIterator();
             for (int i = 0; i < 4; ++i)
             {
                 // print("iter.next()" + iter.next());
-                print("listItr.nextIndex()" + listIter.nextIndex());
-                print("listIter.next()" + listIter.next());
-                print("listIter.previousIndex()" + listIter.previousIndex());
+                System.out.println("listItr.nextIndex()" + listIter.nextIndex());
+                System.out.println("listIter.next()" + listIter.next());
+                System.out.println("listIter.previousIndex()" + listIter.previousIndex());
             }
             // for (String s : "wu xue cheng so cool".split(" "))
             // System.out.println(s);

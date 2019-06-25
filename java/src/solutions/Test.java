@@ -1,7 +1,6 @@
-package list;
+package solutions;
 
 import java.util.*;
-import static net.mindview.util.Print.*;
 
 public class Test
 {
@@ -13,15 +12,15 @@ public class Test
         sList.add("cool");
         sList.add("very");
         for (String s : sList)
-            print(s);
+            System.out.print(s);
         Iterator<String> iter = sList.iterator();
         ListIterator<?> listIter = sList.listIterator();
         for (int i = 0; i < 4; ++i)
         {
             // print("iter.next()" + iter.next());
-            print("listItr.nextIndex()" + listIter.nextIndex());
-            print("listIter.next()" + listIter.next());
-            print("listIter.previousIndex()" + listIter.previousIndex());
+            System.out.print("listItr.nextIndex()" + listIter.nextIndex());
+            System.out.print("listIter.next()" + listIter.next());
+            System.out.print("listIter.previousIndex()" + listIter.previousIndex());
         }
         // while (iter.hasNext())
         // print(iter.next());
