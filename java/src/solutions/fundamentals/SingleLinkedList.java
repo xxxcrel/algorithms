@@ -3,7 +3,7 @@ package solutions.fundamentals;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
-public class LinkedList<T> {
+public class SingleLinkedList<T> {
 
     private Node<T> first;
 
@@ -11,14 +11,14 @@ public class LinkedList<T> {
 
     private int size = 0;
 
-    public LinkedList() {
+    public SingleLinkedList() {
         first = null;
         last = null;
         size = 0;
     }
 
-    public LinkedList(Collection<T> collection) {
-
+    public SingleLinkedList(Collection<T> collection) {
+        throw new UnsupportedOperationException();
     }
 
     public int size() {
@@ -118,7 +118,7 @@ public class LinkedList<T> {
     }
 
     public static void main(String[] args) {
-        LinkedList<String> ll = new LinkedList<>();
+        SingleLinkedList<String> ll = new SingleLinkedList<>();
         ll.add("This");
         ll.add("is");
         ll.add("a");
