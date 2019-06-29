@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LinkedList",
+            "request": "launch",
+            "mainClass": "solutions.fundamentals.LinkedList",
+            "projectName": "java"
+        }
+    ]
+}
