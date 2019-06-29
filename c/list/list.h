@@ -1,7 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 #include <stdbool.h>
-typedef char Item; //模拟实现简单泛型概念
+typedef int Item; //模拟实现简单泛型概念
 
 struct Node;
 typedef struct Node *PtrToNode;
@@ -19,6 +19,5 @@ void insertToTail(List list, Item x);
 void insertToHead(List list, Item x);
 void printList(List list);
 void deleteList(List list);
-List reverse(List list);
 
 #endif

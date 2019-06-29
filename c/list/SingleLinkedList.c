@@ -98,9 +98,9 @@ void printList(List list)
     while (iter != NULL)
     {
         if (iter->next == NULL)
-            printf("%c\n", iter->element);
+            printf("%d\n", iter->element);
         else
-            printf("%c->", iter->element);
+            printf("%d->", iter->element);
         iter = iter->next;
     }
 }
@@ -117,42 +117,60 @@ void deleteList(List list)
     }
     free(header);
 }
-//在给定链表list中直接倒转(假定该表含有头结点)
-List reverse(List list)
+
+//假定l和p均含有头结点且表中数据为升序的整数(以0开始计数的法则)
+void printLots(List l, List p)
 {
-    PtrToNode first = list->next; //从第一个结点开始
-    PtrToNode iter = first->next; //反向迭代器
+    Position currentL = l->next;
+    Position iter = p->next;
+    int currentPosElement = 0;
+    //对p进行迭代
     while (iter)
     {
-        // printf("first = %c, iter = %c\n", first->element, iter->element);
-        first->next = iter->next;
-        iter->next = list->next;
-        list->next = iter;
-        iter = first->next;
-        // printList(list);
+        //p表中两个数据之间的差:如0-1, 1-3, 3-5...
+        for (int i = currentPosElement; i < iter->element; ++i)
+        {
+            currentL = currentL->next;
+            if (currentL == NULL)
+                printf("OutOfBounds\n");
+        }
+        //打印l表中对应p表整数位置的元素
+        printf("%d ", currentL->element);
+        //记录表p的当前结点的整数数据
+        currentPosElement = iter->element;
+        iter = iter->next;
     }
-    return list;
+    printf("\n");
 }
-
 //演示如何使用该例程
 int main()
 {
-    List list = (List)malloc(sizeof(struct Node));
-    if (list == NULL)
-        printf("allocate failure\n");
-    list = makeEmpty(list);
-    Item is[10] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-    for (int i = 0; i < 10; i++)
-        insertToTail(list, is[i]);
-    insertToHead(list, 'H');
-    printList(list);
-    printf("delete 'd' from list\n");
-    delete (list, 'd');
-    printList(list);
-    printf("reverse list\n");
-    list = reverse(list);
-    printList(list);
-    deleteList(list);
+    // List list = (List)malloc(sizeof(struct Node));
+    // if (list == NULL)
+    //     printf("allocate failure\n");
+    // list = makeEmpty(list);
+    // Item is[10] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+    // for (int i = 0; i < 10; i++)
+    //     insertToTail(list, is[i]);
+    // insertToHead(list, 'H');
+    // printList(list);
+    // printf("delete 'd' from list\n");
+    // delete (list, 'd');
+    // printList(list);
+    // deleteList(list);
 
+    List l = (List)malloc(sizeof(struct Node));
+    List p = (List)malloc(sizeof(struct Node));
+    l = makeEmpty(l);
+    p = makeEmpty(p);
+    Item lData[6] = {3, 4, 5, 6, 7, 8};
+    Item pData[3] = {1, 2, 5};
+    for (int i = 0; i < 6; ++i)
+        insertToTail(l, lData[i]);
+    for (int i = 0; i < 3; ++i)
+        insertToTail(p, pData[i]);
+    printList(l);
+    printList(p);
+    printLots(l, p);
     return 0;
 }
