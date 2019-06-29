@@ -76,17 +76,17 @@
                     //在给定链表list中直接倒转(假定该表含有头结点)
                     List reverse(List list)
                     {
-                        PtrToNode top = list->next;//如不含头结点则:top = list;
-                        PtrToNode last = top;//反转后的尾部
-                        PtrToNode iter = top->next;//从第二个结点开始反转
-                        while (iter)
+                        PtrToNode iter = list->next;//若无头结点则:iter = list;
+                        PtrToNode nextIter;
+                        PtrToNode newHead = NULL;
+                        while(iter)
                         {
-                            last->next = iter->next;//尾部下降一格
-                            iter->next = top;//迭代器当前结点上升一格
-                            top = iter;//top保持最高位置
-                            iter = last->next;//迭代器继续
+                            nextIter = iter->next;//nextIter保存下一个结点
+                            iter->next = newHead;//iter当前所在结点暂时成为新头结点
+                            newHead = iter;
+                            iter = nextIter;//继续迭代反转
                         }
-                        list->next = top;//如不含头结点则:list = top;
+                        list->next = newHead;//无头结点则:list = newHead;
                         return list;
                     }
                     ```
@@ -231,5 +231,31 @@
                         }
                         return head;
                     }
+                }
+                ```  
+            - 反转一个单链表(递归方式)  
+                C:  
+                ```C
+                /**
+                 * Definition for singly-linked list.
+                * struct ListNode {
+                *     int val;
+                *     struct ListNode *next;
+                * };
+                */
+
+                struct ListNode* recursiveReverse(struct ListNode* newHead, struct ListNode* iter)
+                {
+                    if(iter == NULL)
+                        return newHead;
+                    struct ListNode* nextIter = iter->next;
+                    iter->next = newHead;
+                    newHead = iter;
+                    return recursiveReverse(newHead, nextIter);
+                    
+                }
+                struct ListNode* reverseList(struct ListNode* head)
+                {
+                    return recursiveReverse(NULL, head);
                 }
                 ```
