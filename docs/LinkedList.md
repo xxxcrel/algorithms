@@ -120,28 +120,29 @@
 
             - 算法4e(书中相关题目不符合我当前封装的List, 故此不作答)
                 - 略
-        2. LeetCode相关练习(初级)
-            C:    
-            ```C
-            /**
-            * Definition for singly-linked list.
-            * struct ListNode {
-            *     int val;
-            *     struct ListNode *next;
-            * }; 
-            */  
-            ```
-            Java:
-            ```Java
-            /**
-            * Definition for singly-linked list.
-            * public class ListNode {
-            *     int val;
-            *     ListNode next;
-            *     ListNode(int x) { val = x; }
-            * }
-            */
-            ```
+        2. LeetCode相关练习(初级)  
+        
+               C:    
+               ```C
+               /**
+               * Definition for singly-linked list.
+               * struct ListNode {
+               *     int val;
+               *     struct ListNode *next;
+               * }; 
+               */  
+               ```
+               Java:
+               ```Java
+               /**
+               * Definition for singly-linked list.
+               * public class ListNode {
+               *     int val;
+               *     ListNode next;
+               *     ListNode(int x) { val = x; }
+               * }
+               */
+               ```
             - 请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。现有一个链表 -- head = [4,5,1,9]，它可以表示为:4->5->1->9  
                 C:
                 ```C
@@ -164,13 +165,13 @@
                 }
                 ```
             - 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
-            示例：
-            给定一个链表: 1->2->3->4->5, 和 n = 2.
-            当删除了倒数第二个节点后，链表变为 1->2->3->5.
-            说明：
-            给定的 n 保证是有效的。
-            进阶：
-            你能尝试使用一趟扫描实现吗？  
+               示例：
+               给定一个链表: 1->2->3->4->5, 和 n = 2.
+               当删除了倒数第二个节点后，链表变为 1->2->3->5.
+               说明：
+               给定的 n 保证是有效的。
+               进阶：
+               你能尝试使用一趟扫描实现吗？  
                 C:  
                 ```C
                 //进阶答案:利用前后指针,last先走n步, pre再和last同走,当last到末尾时,pre正好是倒数第 n 个结点的前驱结点(这题很有趣, 还有处理边缘值如([1, 2], 2), ([1], 1))
@@ -322,89 +323,89 @@
                 }
                 ```
             - 请判断一个链表是否为回文链表。
-            示例 1:
-            输入: 1->2
-            输出: false
-            示例 2:
-            输入: 1->2->2->1
-            输出: true
-            进阶：
-            你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？  
-            C:
-            ```C
-            struct ListNode *reverse(struct ListNode *head)
-            {
-                struct ListNode *iter = head, *newHead = NULL;
-                while (iter)
-                {
-                    struct ListNode *nextIter = iter->next;
-                    iter->next = newHead;
-                    newHead = iter;
-                    iter = nextIter;
-                }
-                return newHead;
-            }
-            bool isPalindrome(struct ListNode *head)
-            {
-                struct ListNode *fast, *slow;
-                fast = slow = head;
-                if (fast == NULL || fast->next == NULL)
-                    return true;
-                while (fast->next != NULL && fast->next->next != NULL)
-                {
-                    slow = slow->next;
-                    fast = fast->next->next;
-                }
-                slow->next = reverse(slow->next);
-                struct ListNode *secondHead = slow->next;
-                while (secondHead)
-                {
-                    if (head->val != secondHead->val)
-                        return false;
-                    head = head->next;
-                    secondHead = secondHead->next;
-                }
-                return true;
-            }
-            ```  
-            Java:  
-            ```Java
+               示例 1:
+               输入: 1->2
+               输出: false
+               示例 2:
+               输入: 1->2->2->1
+               输出: true
+               进阶：
+               你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？  
+               C:
+               ```C
+               struct ListNode *reverse(struct ListNode *head)
+               {
+                   struct ListNode *iter = head, *newHead = NULL;
+                   while (iter)
+                   {
+                       struct ListNode *nextIter = iter->next;
+                       iter->next = newHead;
+                       newHead = iter;
+                       iter = nextIter;
+                   }
+                   return newHead;
+               }
+               bool isPalindrome(struct ListNode *head)
+               {
+                   struct ListNode *fast, *slow;
+                   fast = slow = head;
+                   if (fast == NULL || fast->next == NULL)
+                       return true;
+                   while (fast->next != NULL && fast->next->next != NULL)
+                   {
+                       slow = slow->next;
+                       fast = fast->next->next;
+                   }
+                   slow->next = reverse(slow->next);
+                   struct ListNode *secondHead = slow->next;
+                   while (secondHead)
+                   {
+                       if (head->val != secondHead->val)
+                           return false;
+                       head = head->next;
+                       secondHead = secondHead->next;
+                   }
+                   return true;
+               }
+               ```  
+               Java:  
+               ```Java
 
-            class Solution {
-                public boolean isPalindrome(ListNode head) {
-                    ListNode fast, slow;
-                    fast = slow = head;
-                    if(fast == null || fast.next == null)
-                        return true;
-                    while(fast.next != null && fast.next.next != null)
-                    {
-                        fast = fast.next.next;
-                        slow = slow.next;
-                    }
-                    slow.next = reverse(slow.next);
-                    ListNode secondHead = slow.next;
-                    while(secondHead != null)
-                    {
-                        if(head.val != secondHead.val)
-                            return false;
-                        head = head.next;
-                        secondHead = secondHead.next;
-                    }
-                    return true;
-                }
-                
-                public ListNode reverse(ListNode head)
-                {
-                    ListNode iter = head;
-                    ListNode newHead = null;
-                    while(iter != null)
-                    {
-                        ListNode nextIter = iter.next;
-                        iter.next = newHead;
-                        newHead = iter;
-                        iter = nextIter;
-                    }
-                    return newHead;
-                }
-            }
-            ```
+               class Solution {
+                   public boolean isPalindrome(ListNode head) {
+                       ListNode fast, slow;
+                       fast = slow = head;
+                       if(fast == null || fast.next == null)
+                           return true;
+                       while(fast.next != null && fast.next.next != null)
+                       {
+                           fast = fast.next.next;
+                           slow = slow.next;
+                       }
+                       slow.next = reverse(slow.next);
+                       ListNode secondHead = slow.next;
+                       while(secondHead != null)
+                       {
+                           if(head.val != secondHead.val)
+                               return false;
+                           head = head.next;
+                           secondHead = secondHead.next;
+                       }
+                       return true;
+                   }
+
+                   public ListNode reverse(ListNode head)
+                   {
+                       ListNode iter = head;
+                       ListNode newHead = null;
+                       while(iter != null)
+                       {
+                           ListNode nextIter = iter.next;
+                           iter.next = newHead;
+                           newHead = iter;
+                           iter = nextIter;
+                       }
+                       return newHead;
+                   }
+               }
+               ```
