@@ -120,29 +120,28 @@
 
             - 算法4e(书中相关题目不符合我当前封装的List, 故此不作答)
                 - 略
-        2. LeetCode相关练习(初级)  
-        
-               C:    
-               ```C
-               /**
-               * Definition for singly-linked list.
-               * struct ListNode {
-               *     int val;
-               *     struct ListNode *next;
-               * }; 
-               */  
-               ```
-               Java:
-               ```Java
-               /**
-               * Definition for singly-linked list.
-               * public class ListNode {
-               *     int val;
-               *     ListNode next;
-               *     ListNode(int x) { val = x; }
-               * }
-               */
-               ```
+        2. LeetCode相关练习(初级)     
+            ```C
+            /**
+            * c语言
+            * Definition for singly-linked list.
+            * struct ListNode {
+            *     int val;
+            *     struct ListNode *next;
+            * }; 
+            */  
+            ```  
+            ```Java
+            /**
+             * Java
+             * Definition for singly-linked list.
+             * public class ListNode {
+             *     int val;
+             *     ListNode next;
+             *     ListNode(int x) { val = x; }
+             * }
+             */
+            ```
             - 请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。现有一个链表 -- head = [4,5,1,9]，它可以表示为:4->5->1->9  
                 C:
                 ```C
@@ -251,18 +250,17 @@
 
                 class Solution {
                     public ListNode reverseList(ListNode head) {
-                        return recursiveReverse(head, null);
+                        return recursiveReverse(null, head);
                     }
                     
-                    public ListNode recursiveReverse(ListNode iter, ListNode newHead)
+                    public ListNode recursiveReverse(ListNode newHead, ListNode iter)
                     {
                         if(iter == null)
                             return newHead;
-                        ListNode nextHead = iter.next;
+                        ListNode nextIter = iter.next;
                         iter.next = newHead;
                         newHead = iter;
-                        iter = nextHead;
-                        return recursiveReverse(iter, newHead);
+                        return recursiveReverse(newHead, nextIter);
                     }
                 }
                 ```  
