@@ -258,4 +258,103 @@
                 {
                     return recursiveReverse(NULL, head);
                 }
+                ```  
+                Java:
+                ```Java
+                /**
+                * Definition for singly-linked list.
+                * public class ListNode {
+                *     int val;
+                *     ListNode next;
+                *     ListNode(int x) { val = x; }
+                * }
+                */
+                class Solution {
+                    public ListNode reverseList(ListNode head) {
+                        return recursiveReverse(head, null);
+                    }
+                    
+                    public ListNode recursiveReverse(ListNode iter, ListNode newHead)
+                    {
+                        if(iter == null)
+                            return newHead;
+                        ListNode nextHead = iter.next;
+                        iter.next = newHead;
+                        newHead = iter;
+                        iter = nextHead;
+                        return recursiveReverse(iter, newHead);
+                    }
+                }
+                ```  
+            - 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+                示例：
+                输入：1->2->4, 1->3->4
+                输出：1->1->2->3->4->4  
+                C:  
+                ```C  
+                /**
+                * Definition for singly-linked list.
+                * struct ListNode {
+                *     int val;
+                *     struct ListNode *next;
+                * };
+                */
+
+
+                struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
+                    struct ListNode *head = (struct ListNode*)malloc(sizeof(struct ListNode));
+                    struct ListNode *iter = head;
+                    while(l1 != NULL && l2 != NULL)
+                    {
+                        if(l1->val < l2->val)
+                        {
+                            iter = iter->next = l1;
+                            l1 = l1->next;
+                        }
+                        else
+                        {
+                            iter = iter->next = l2;
+                            l2 = l2->next;
+                        }
+                    }
+                    iter->next = l1 == NULL ? l2 : l1;
+                    return head->next;
+                }
+                ```  
+                Java:  
+                ```Java
+                /**
+                * Definition for singly-linked list.
+                * public class ListNode {
+                *     int val;
+                *     ListNode next;
+                *     ListNode(int x) { val = x; }
+                * }
+                */
+
+                class Solution {
+                    //边缘情形(null, null), (l1, null), (null, l2)
+                    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+                        ListNode head = new ListNode(0);//先做一个Dummy Node
+                        ListNode iter = head;//用迭代器来链接l1, l2
+                        while(l1 != null && l2 != null)
+                        {
+                            if(l1.val < l2.val)
+                            {
+                                iter.next = l1;
+                                iter = iter.next;
+                                l1 = l1.next;
+                            }
+                            else
+                            {
+                                iter.next = l2;
+                                iter = iter.next;
+                                l2 = l2.next;
+                            }
+                        }
+                        // iter.next = (l1 == null && l2 == null) ? null : l1 == null ? l2 : l1;
+                        iter.next = l1 == null ? l2 : l1;//这里很有趣,正确处理三种边缘情形,比上面语句更加精炼
+                        return head.next;
+                    }
+                }
                 ```
