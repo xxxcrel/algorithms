@@ -1,2 +1,6 @@
 /java/.vscode
 /java/.settings
+/java/bin
+.vscode
+.idea
+algorithms.iml
